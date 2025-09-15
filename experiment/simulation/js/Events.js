@@ -7,7 +7,6 @@ const Events = {
       Util.get(".btn-next").addEventListener("click", () => {
         Scenes.next();
       });
-  
       // * Back Button
       Util.get(".btn-back").addEventListener("click", () => {
         Scenes.back();
@@ -18,7 +17,8 @@ const Events = {
       });
   
       // * Mute Button
-      Util.get(".btn-mute").addEventListener("click", () => {
+      const muteBtn = Util.get(".btn-mute");
+      muteBtn.addEventListener("click", () => {
         if (this.isMute) {
           this.isMute = false;
           muteBtn.src = "./src/images/template_imgs/speech_off_btn.png";

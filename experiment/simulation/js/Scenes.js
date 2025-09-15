@@ -438,43 +438,46 @@ const Scenes = {
       Scenes.StepProcess.start();
       Scenes.experimentHeading("Drone is not responding – I");
 
-      Util.setCC("-")
 
-      Src.drone_3d_img.set(1002,-30,184).zIndex(1)
-      let items = [
-        Src.bgimag.set(0,-48,500,950)
-        // Src.drone_3d_img.set(17,130,280).zIndex(1).hide()
-
-      ]
-
-      anime.timeline({
-        duration: 6000,
-        easing: "linear",
-      })
-      .add({
-        targets: Src.drone_3d_img.item,
-        left: 25,
-        top: 100,
-        height: 280,
-        complete(){
-          Scenes.stepModal({
-            title: "Quadcopter 450",
-            description: ` <b>Quadcopter</b> is an unmanned aerial vehicle
-                  (UAV) or drone with four rotors, each with a motor and propeller. A quadcopter can be manually controlled
-                  or can be autonomous. It is also called quadrotor helicopter or quadrotor. It belongs to a more general
-                  class of aerial vehicles called multicopter or multirotor. Quadcopters provide stable flight performance,
-                  making them ideal for surveillance and aerial photography.`,
-            btnText: "Start"
-          }, ()=>{
-            items.forEach((ele)=>ele.fadeHide())
-            menu()
-          }, 433,106,483).fadeShow(2000)
-
-          setTimeout(() => {
-            Util.setCC("Click on 'Start' to start the experiment.")
-          }, 4000);
-        }
-      })
+      if (Scenes.tabsDone.indexOf(1) == -1){
+        Src.drone_3d_img.set(1002,-30,184).zIndex(1)
+        let items = [
+          Src.bgimag.set(0,-48,500,950)
+          // Src.drone_3d_img.set(17,130,280).zIndex(1).hide()
+  
+        ]
+  
+        anime.timeline({
+          duration: 6000,
+          easing: "linear",
+        })
+        .add({
+          targets: Src.drone_3d_img.item,
+          left: 25,
+          top: 100,
+          height: 280,
+          complete(){
+            Scenes.stepModal({
+              title: "Quadcopter 450",
+              description: ` <b>Quadcopter</b> is an unmanned aerial vehicle
+                    (UAV) or drone with four rotors, each with a motor and propeller. A quadcopter can be manually controlled
+                    or can be autonomous. It is also called quadrotor helicopter or quadrotor. It belongs to a more general
+                    class of aerial vehicles called multicopter or multirotor. Quadcopters provide stable flight performance,
+                    making them ideal for surveillance and aerial photography.`,
+              btnText: "Start"
+            }, ()=>{
+              items.forEach((ele)=>ele.fadeHide())
+              menu()
+            }, 433,106,483).fadeShow(2000)
+  
+            setTimeout(() => {
+              Util.setCC("Click on 'Start' to start the experiment.")
+            }, 4000);
+          }
+        })
+      }else{
+        menu()
+      }
 
       function menu(){
         let styles = {
@@ -518,12 +521,13 @@ const Scenes = {
         ];
   
         let droneAnime = null;
-        anime({
+        let droneAnimeFull = anime({
           duration: 3000,
           easing: "linear",
           targets: Src.drone_3d_img.item,
           left: 560,
           right: 124,
+          autoplay: false,
           complete() {
             droneAnime = anime({
               targets: Src.drone_3d_img.item,
@@ -536,7 +540,11 @@ const Scenes = {
           keyframes: [{ translateY: 105 }, { translateY: 11 }],
         });
   
-  
+        if(Scenes.tabsDone.indexOf(1) == -1){
+          droneAnimeFull.play()
+        }else{
+          
+        }
   
         if(Scenes.tabsDone.indexOf(0) == -1){
           right_ricks[0].show();
@@ -579,7 +587,6 @@ const Scenes = {
           btns[1].item.onclick = ops2;
   
           function ops2() {
-            droneAnime.reset();
             Scenes.StepProcess.setIsProcessRunning(false);
             Scenes.currentStep = 4;
             Scenes.next();
@@ -602,7 +609,6 @@ const Scenes = {
           btns[0].item.onclick = ops1;
   
           function ops1() {
-            droneAnime.reset();
             Scenes.StepProcess.setIsProcessRunning(false);
             Scenes.currentStep = 1;
             Scenes.next();
@@ -1003,7 +1009,7 @@ const Scenes = {
     () => {
       Scenes.StepProcess.start();
       Scenes.experimentHeading("Battery issues - Check connections");
-      Util.setCC("-")
+      Util.setCC("...")
 
 
 
@@ -2678,7 +2684,8 @@ const Scenes = {
       const constCount = count;
       let newStep = () => {
         this.realCurrentStep = constCount;
-        console.log(`RealCurrentStep: ${this.realCurrentStep}`);
+        // console.log(`RealCurrentStep: ${this.realCurrentStep}`);
+
         return step();
       };
 
@@ -2706,7 +2713,7 @@ const Scenes = {
       Scenes.setRealCurrentStep();
     }
     //! animation isRunning
-    if (this.isRunning) {
+    if (this.StepProcess.isRunning) {
       return;
     } else if (this.currentStep < this.steps.length) {
       this.StepProcess.start();

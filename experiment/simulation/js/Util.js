@@ -209,6 +209,8 @@ const Util = {
   textToSpeech(text, speak = true) {
     // for filter <sub></sub>
     text = text.replaceAll("<sub>", " ").replaceAll("</sub>", " ");
+    text = text === '...' ? '' : text;
+
     let utterance = new SpeechSynthesisUtterance();
     utterance.text = text;
     utterance.voice = window.speechSynthesis.getVoices()[0];
