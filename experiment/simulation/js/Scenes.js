@@ -435,6 +435,7 @@ const Scenes = {
     //! Menu page
     // * Step0
     () => {
+      Layout.ProgressBar.hideTopProgressBar();
       Scenes.StepProcess.start();
       Scenes.experimentHeading("Drone is not responding – I");
 
@@ -449,7 +450,7 @@ const Scenes = {
   
         anime.timeline({
           duration: 6000,
-          easing: "linear",
+          easing: "linear",   
         })
         .add({
           targets: Src.drone_3d_img.item,
@@ -543,7 +544,14 @@ const Scenes = {
         if(Scenes.tabsDone.indexOf(1) == -1){
           droneAnimeFull.play()
         }else{
-          
+          Src.drone_3d_img.set(560, 11, 280)
+          anime({
+            targets: Src.drone_3d_img.item,
+            keyframes: [{ translateY: 105 }, { translateY: 11 }],
+            loop: true,
+            easing: "linear",
+            duration: 3000,
+          })
         }
   
         if(Scenes.tabsDone.indexOf(0) == -1){
@@ -552,6 +560,7 @@ const Scenes = {
           tabs[0].opacity(1);
           tabs[1].opacity(1);
           Util.setCC("We have successfully rectify both the components of the drone.")
+          Layout.showNextBtnAsRestartBtn();
           setTimeout(()=>{
             Scenes.stepModal(
               {
@@ -578,6 +587,7 @@ const Scenes = {
           tabs[1].item.onclick = () => {
             Dom.setBlinkArrowRed().reset();
             Util.setCC("Click on the start tracing to start tracing.");
+            Src.btn_start_tracing_2.cursor();
             Dom.setBlinkArrowRed(336, 323).play();
             tabs[1].opacity(1);
             issues[1].show();
@@ -600,6 +610,7 @@ const Scenes = {
           tabs[0].item.onclick = () => {
             Dom.setBlinkArrowRed().reset();
             Util.setCC("Click on the start tracing to start tracing.");
+            Src.btn_start_tracing_1.cursor();
             Dom.setBlinkArrowRed(336, 323).play();
             tabs[0].opacity(1);
             issues[0].show();
@@ -668,6 +679,7 @@ const Scenes = {
       else if(Scenes.batteryIssueDone[0]){
         rightTicks[0].show()
         Util.setCC("Click on check connections.")
+        options[1].cursor();
         options[1].item.onclick = () => {
           Scenes.currentStep = 3;
           Scenes.StepProcess.done();
@@ -676,6 +688,7 @@ const Scenes = {
       }
       else{
         Util.setCC("Click on check physical damage.")
+        options[0].cursor();
         options[0].item.onclick = () => {
           Scenes.currentStep = 2;
           Scenes.StepProcess.done();
@@ -1269,6 +1282,7 @@ const Scenes = {
       //functionality
 
       let options = [Src.btn_check_physical_damage, Src.btn_check_connection];
+      options.forEach((ele) => ele.cursor("default"));
 
       if(Scenes.pmuIssueDone.indexOf(0) == -1){
         Scenes.tabsDone[1] = 1
@@ -1290,6 +1304,7 @@ const Scenes = {
       else if(Scenes.pmuIssueDone[0]){
         rightTicks[0].show()
         Util.setCC("Click on check connections.")
+        options[1].cursor();
         options[1].item.onclick = () => {
           Scenes.currentStep = 6;
           Scenes.StepProcess.done();
@@ -1298,6 +1313,7 @@ const Scenes = {
       }
       else{
         Util.setCC("Click on check physical damage.")
+        options[0].cursor();
         options[0].item.onclick = () => {
           Scenes.currentStep = 5;
           Scenes.StepProcess.done();

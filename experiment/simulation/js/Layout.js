@@ -1,4 +1,4 @@
-import { Util } from "./Libs.js";
+import { Dom, Util, Scenes, Events } from "./Libs.js";
 
 const Layout = {
   // ! Drawer
@@ -26,6 +26,16 @@ const Layout = {
         this.listItems[this.activeIdx - 1].classList.add("active");
       }
     },
+  },
+
+  showNextBtnAsRestartBtn() {
+    setTimeout(() => {
+      Events.unbindAllEvents()
+      const nextBtn = new Dom(".btn-next")
+      nextBtn.setContent("Restart")
+      nextBtn.onClick(() => location.reload())
+      Scenes.StepProcess.setIsProcessRunning(false);
+    }, 100)
   },
 
   // ! Progress Bar
@@ -61,6 +71,10 @@ const Layout = {
       let progressActive = Util.getAll(".progress-step-active");
       progress.style.width =
         ((progressActive.length - 1) / (this.progressSteps.length - 1)) * 100 + "%";
+    },
+
+    hideTopProgressBar() {
+      new Dom(".progress-bar").hide();
     },
   },
 
