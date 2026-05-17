@@ -35,7 +35,7 @@ const Layout = {
       nextBtn.setContent("Restart")
       nextBtn.onClick(() => location.reload())
       Scenes.StepProcess.setIsProcessRunning(false);
-    }, 100)
+    }, 5000)
   },
 
   // ! Progress Bar
