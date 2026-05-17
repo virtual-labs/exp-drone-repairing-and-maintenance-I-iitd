@@ -1,4 +1,3 @@
-# Procedure
 1. **Initial Inspection:**  
    - Disconnect the battery and power off the drone.  
    - Visually inspect the battery for any signs of swelling, leakage, or damage.  

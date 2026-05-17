@@ -1,10 +1,8 @@
-# Theory
-
-## Definition of Drone (Quadcopter)
+### Definition of Drone (Quadcopter)
 
 A quadcopter is an unmanned aerial vehicle (UAV) with four rotors, each powered by a motor and propeller. It can be manually controlled or programmed to operate autonomously. Quadcopters are widely used in aerial photography, surveillance, agriculture, and research due to their stable flight performance and precise maneuverability.
 
-## Principle of Drone
+### Principle of Drone
 
 Quadcopters rely on two rotors rotating clockwise (CW) and two counter-clockwise (CCW) to balance torque and provide lift.
 
@@ -15,7 +13,7 @@ Unlike helicopters, quadcopters do not use cyclic pitch control; instead, they r
 
 ---
 
-## Components Involved in Battery and PMU Issues
+### Components Involved in Battery and PMU Issues
 
 ### 1. Drone Battery
 The battery is the primary power source of the drone, usually a Lithium Polymer (Li-Po) battery, chosen for high energy density and lightweight.
@@ -76,7 +74,7 @@ Drone crashes may cause cracks in the battery casing or broken wires around the 
 
 ---
 
-## Troubleshooting Approach
+### Troubleshooting Approach
 1. *Visual Inspection* – Check battery casing, PMU board, and solder joints.  
 2. *Voltage Testing* – Use a multimeter to measure battery voltage and PMU outputs.  
 3. *Re-soldering* – Repair loose connections.  

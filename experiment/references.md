@@ -1,4 +1,3 @@
-# References
 1. Drone Maintenance Handbook by UAV Systems International.  
 2. DJI Drone Repair Manuals and Guides – [www.dji.com](https://www.dji.com)  
 3. Federal Aviation Administration (FAA) Drone Maintenance Guidelines – [www.faa.gov](https://www.faa.gov)  
