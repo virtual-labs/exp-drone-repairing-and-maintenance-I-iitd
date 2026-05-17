@@ -437,7 +437,7 @@ const Scenes = {
     () => {
       Layout.ProgressBar.hideTopProgressBar();
       Scenes.StepProcess.start();
-      Scenes.experimentHeading("Drone is not responding – I");
+      Scenes.experimentHeading("Drone Repairing and Maintenance - I");
 
 
       if (Scenes.tabsDone.indexOf(1) == -1){
